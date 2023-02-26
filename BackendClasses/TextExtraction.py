@@ -3,6 +3,7 @@ import fitz
 from PIL import Image
 import io
 from resume_parser import resumeparse
+from ROOT import TESSERACT_PATH
 
 def extract_text(file):
     pdf_file = fitz.open(stream=file, filetype='pdf')
@@ -20,7 +21,7 @@ def extract_text(file):
             image_bytes = base_image["image"]
             img  = Image.open(io.BytesIO(image_bytes))
 
-            pytesseract.pytesseract.tesseract_cmd=r'C:/Users/Lenovo/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'
+            pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
             text=pytesseract.image_to_string(img)
             result += text
 
