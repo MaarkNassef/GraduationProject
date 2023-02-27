@@ -21,6 +21,9 @@ def signUp():
        
         return redirect(url_for('signin'))
        
+@app.route('/')
+def home():
+    return render_template('base.html')
 
 @app.route('/signIn',methods=['GET','POST'])
 def signin():

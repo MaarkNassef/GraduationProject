@@ -1,0 +1,89 @@
+.body {
+    padding: 0%;
+    margin: 0%;
+    font-family: "Segoe UI", sans-serif;
+    background-color: black;
+     
+}
+.backgroundphoto{
+    background-image: url("../Photo/Background.png") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+.main-btn {
+    color: #6354fb;
+    padding: 0.5rem 1rem;
+  }
+  .main-btn:hover {
+    color: #6354fb;
+  }
+  .main-title::after {
+    content: "";
+    width: 120px;
+    height: 2px;
+    background-color:#6354fb;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* Start Navbar */
+.hr :hover {
+    color: #6354fb;
+  }
+  .navbar{
+    text-align: center;
+    
+  }
+  .navbar .navbar-nav .h4{
+    color:white;
+    text-align: center;
+  }
+  .navbar .navbar-nav .nav-link {
+    color: white;
+  }
+  .navbar .navbar-nav .nav-link:hover {
+    color:#6354fb;
+  }
+  .navbar .navbar-nav .nav-link {
+    color: white;
+  }
+
+  .navbar .navbar-nav .nav-button2 {
+    color: white;
+   
+     text-decoration: none;
+  }
+  .navbar .search {
+    border-left: 0.25px solid white;
+  }
+  .navbar .navbar-toggler {
+    color: white;
+    font-size: 25px;
+    border-color: white;
+  }
+  .navbar .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  /* End Navbar */
+.chrachtstics{
+    background-color: black;
+    color: white;
+}
+  .chrachtstics .line::after {
+    content: "";
+    width: 120px;
+    height: 2px;
+    background-color: #6354fb;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+.footer{
+  background-color: #1C1B1B;
+}
+.links ul li a:hover{
+  color: #6354fb;
+}

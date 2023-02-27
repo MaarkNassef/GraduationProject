@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body class="backgroundphoto">
+    <div>
+        <nav class="navbar navbar-expand-lg  ">
+            <div class="container">
+                <a class="navbar-brand" style="display: inline;" href="#">
+                    <img src="{{url_for('static' ,filename='Photo/logo.png')}}" alt="" />
+                    <span class="hr" style=color:white;>HR Assistant</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                    aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse col-lg-8 align-items-center" id="main">
+                    {% if 'ID' not in session: %}
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    {% else: %}
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        {% if 'ID' in session: %} <!--Signed In-->
+                        <div class="search ps-3 pe-3 d-none d-lg-block">
+                        </div>
+                        {% endif %}
+                    </ul>
+                    {% if 'ID' in session: %} <!--Signed In-->
+                    <button class="btn btn-primary rounded-pill" href="#">Logout</button>
+                    {% endif %}
+                </div>
+                {% if 'ID' not in session: %}
+                <div class="collapse navbar-collapse" id="main">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary rounded-pill mx-3 mb-3"> <a class="nav-button2"
+                                    href="#">Log in</a></button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-outline-primary rounded-pill">
+                                <a class="nav-button2" href="#">Get Started</a>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="footer pt-5 pb-5 text-white-50 text-center text-md-start ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="info mb-5">
+                        <a class="navbar-brand" style="display: inline;" href=" #">
+                            <img src="{{url_for('static',filename='Photo/Logobig.png')}}" alt="" class="mb-4" />
+                            <span class=" hr" style="color:white; font-size: large;"> HR Assistant</span>
+                        </a>
+                        <p class=" mb-5">
+                            HR Assistant is an invaluable tool for any company looking to streamline their recruitment
+                            process and identify the best candidates
+                        <div class="copyright">
+                            Created By <span>BoMap</span>
+                            <div>&copy; 2023 - <span>HR Assistant</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <div class="links">
+                        <h5 class="text-light">Links</h5>
+                        <ul class="list-unstyled lh-lg">
+                            <li><a class="navbar-brand" href="#">Home</a></li>
+                            <li><a class="navbar-brand" href="#">Contact US</a></li>
+                            <li><a class="navbar-brand" href="#">Ask for Help</a></li>
+                            <li><a class="navbar-brand" href="#">Terms and Condition</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <div class="links">
+                        <h5 class="text-light">About Us</h5>
+                        <ul class="list-unstyled lh-lg">
+                            <li><a class="navbar-brand" href="#">Sign In</a></li>
+                            <li><a class="navbar-brand" href="#">Register</a></li>
+                            <li><a class="navbar-brand" href="#">About Us</a></li>
+                            <li><a class="navbar-brand" href="#">Forget Password</a></li>
+                            <li><a class="navbar-brand" href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact">
+                        <h5 class="text-light">Contact Us</h5>
+                        <p class="lh-lg mt-3 mb-5">Get in touch with us via mail phone.We are waiting for your call or
+                            message</p>
+                        <a class="btn btn-primary rounded-pill main-btn text-white w-75 h-auto"
+                            href="#">HrAssistant@gmail.com</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
