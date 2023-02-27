@@ -3,7 +3,7 @@ from database import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Amir Secret key'
-@app.route('/',methods=['GET','POST'])
+@app.route('/signup',methods=['GET','POST'])
 def signUp():
     if request.method=='GET':
         return render_template('signUp.html')
