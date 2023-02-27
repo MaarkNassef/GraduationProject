@@ -19,10 +19,10 @@ def signUp():
             
             signUpRegistration(name,email,password,company_name)
        
-        return render_template('signUp.html')
+        return redirect(url_for('signin'))
        
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/signIn',methods=['GET','POST'])
 def signin():
     if (request.method=='GET'):
        return render_template('signin.html')
