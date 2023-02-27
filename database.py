@@ -22,11 +22,10 @@ def signUpRegistration(name,email,password,companyName):
 
     conn.commit()
 
-def getHrJobDescription(email: str, password: str) -> int:
+def getHrJobDescription(id):
     cursor = conn.cursor()
-    cursor.execute('SELECT id FROM users WHERE email = %s AND password = %s', (email, password))
-    try:
-        id = cursor.fetchone()[0]
-        return id
-    except:
-        return -1
+    cursor.execute('SELECT jobName,jobDescription,jobId FROM hrJobDescription WHERE userId = %s' , (id,))
+
+    result = cursor.fetchall()
+    return result
+
