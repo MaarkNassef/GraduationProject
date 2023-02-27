@@ -1,5 +1,5 @@
 from flask import Flask,render_template,redirect,url_for,request,flash,session
-from database import signUpRegistration
+from database import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Amir Secret key'
@@ -29,7 +29,7 @@ def signin():
     else:   
         email = request.form['email']
         password = request.form['password']
-        id=authenticate(email=email,password=password)
+        id = authenticate(email=email,password=password)
         if id ==-1 :
             pass
         else:  
