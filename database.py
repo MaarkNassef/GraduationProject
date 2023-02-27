@@ -30,3 +30,7 @@ def getHrJobDescription(email: str, password: str) -> int:
         return id
     except:
         return -1
+def SETJobDescription(name: str, JobDescription: str, ID ) :
+    cursor = conn.cursor()
+    cursor.execute('insert into OPPORTUNITY (jobname,JobDescription,UserId ) values(%s, %s,%s)',(name,JobDescription,ID))
+    conn.commit()

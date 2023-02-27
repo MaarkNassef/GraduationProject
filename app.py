@@ -36,3 +36,15 @@ def signin():
             session['Email']=email
             session['ID'] =id
             return render_template('hrhome.html')
+@app.route('/addJob',methods=['GET','POST'])
+def addJob():
+    if (request.method=='GET'):
+       return render_template('addJob.html')
+    else:
+        name=request.form['Name']
+        JobDescription=request.form['JobDescription']    
+        SETJobDescription(name,JobDescription,1)
+       
+        return render_template('addJob.html')
+    
+   
