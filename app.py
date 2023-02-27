@@ -38,4 +38,13 @@ def signin():
         else:  
             session['Email']=email
             session['ID'] =id
-            return render_template('hrhome.html')
+            return redirect(url_for('hrHome'))
+  
+
+
+@app.route('/hrHomePage')
+def hrHome():
+    result = getHrJobDescription(session['ID'])
+    return render_template('hrhome.html',Data = result)
+
+
