@@ -3,53 +3,54 @@
 {% block content %}
 <div class="container">
   <div class="row col-10 mx-auto">
-  <div class="col-lg-6 col-sm-12 col-md-12 p-0">
-    <img src="../static/Photo/SignUpPic.png" class="img-fluid">
-  </div>
-  <div class="bg-light bg-opacity-10 rounded-end-5 col-lg-6 col-sm-12 col-md-12">
-    <div class="my-auto">
-    <div class="py-3 ms-3">
-      <h2 class="display-4 fs-4 text-white">Create an account</h2>
+    <div class="col-lg-6 col-sm-12 col-md-12 p-0">
+      <img src="../static/Photo/SignUpPic.png" class="img-fluid">
     </div>
-    <form method="post">
-      <div>
-        <div class="form-floating mb-3 mx-3">
-          <input type="text" class="form-control bg-transparent text-white" id="name" name="name" placeholder="name" style="border-color: #7620FF; border-width: 3px;">
-          <label for="name" class="text-white">Full Name</label>
+    <div class="bg-light bg-opacity-10 rounded-end-5 col-lg-6 col-sm-12 col-md-12">
+      <div class="my-auto">
+        <div class="py-3 ms-3">
+          <h2 class="display-4 fs-4 text-white">Create an account</h2>
         </div>
-        <div class="form-floating mb-3 mx-3">
-          <input type="email" class="form-control bg-transparent text-white" id="email" name="email" style="border-color: #7620FF; border-width: 3px;"
-          placeholder="name@example.com">
-          <label for="email" class="text-white">Email Address</label>
-        </div>
-        <div class="form-floating mb-3 mx-3">
-          <input type="password" class="form-control bg-transparent text-white" id="password" name="password" style="border-color: #7620FF; border-width: 3px;"
-          placeholder="password">
-          <label for="password" class="text-white">Password</label>
-        </div>
-      <div class="form-floating mb-3 mx-3">
-        <input type="password" class="form-control bg-transparent text-white" id="confimPassword" name="confimPassword" style="border-color: #7620FF; border-width: 3px;"
-          placeholder="confimPassword">
-          <label for="confimPassword" class="text-white">Confirm Password</label>
-        </div>
-        <div class="form-floating mb-3 mx-3">
-          <input type="text" class="form-control bg-transparent text-white" id="companyName" name="companyName" style="border-color: #7620FF; border-width: 3px;"
-          placeholder="companyName">
-          <label for="companyName" class="text-white">Company Name</label>
-        </div>
-        <div class="text-center text-white mb-3">
-          <p>By continuing you agree to a <a class="text-decoration-none" href="#">Terms & Conditions</a> and <a
-            class="text-decoration-none" href="#">Privacy Policy</a></p>
+        <form method="post">
+          <div>
+            <div class="form-floating mb-3 mx-3">
+              <input type="text" class="form-control bg-transparent text-white" id="name" name="name" placeholder="name"
+                style="border-color: #6354FB; border-width: 3px;">
+              <label for="name" class="text-white">Full Name</label>
+            </div>
+            <div class="form-floating mb-3 mx-3">
+              <input type="email" class="form-control bg-transparent text-white" id="email" name="email"
+                style="border-color: #6354FB; border-width: 3px;" placeholder="name@example.com">
+              <label for="email" class="text-white">Email Address</label>
+            </div>
+            <div class="form-floating mb-3 mx-3">
+              <input type="password" class="form-control bg-transparent text-white" id="password" name="password"
+                style="border-color: #6354FB; border-width: 3px;" placeholder="password">
+              <label for="password" class="text-white">Password</label>
+            </div>
+            <div class="form-floating mb-3 mx-3">
+              <input type="password" class="form-control bg-transparent text-white" id="confimPassword"
+                name="confimPassword" style="border-color: #6354FB; border-width: 3px;" placeholder="confimPassword">
+              <label for="confimPassword" class="text-white">Confirm Password</label>
+            </div>
+            <div class="form-floating mb-3 mx-3">
+              <input type="text" class="form-control bg-transparent text-white" id="companyName" name="companyName"
+                style="border-color: #6354FB; border-width: 3px;" placeholder="companyName">
+              <label for="companyName" class="text-white">Company Name</label>
+            </div>
+            <div class="text-center text-white mb-3">
+              <p>By continuing you agree to a <a class="text-decoration-none" href="#">Terms & Conditions</a> and <a
+                  class="text-decoration-none" href="#">Privacy Policy</a></p>
+            </div>
+            <div class="text-center mb-3">
+              <button type="submit" class="btn btn-primary rounded-3" style="background-color: #7620FF">Sign Up</button>
+            </div>
+            <div class="text-center text-white mb-3">
+              <p>Already have an account? <a class="text-decoration-none" href="{{url_for('signin')}}">Login</a></p>
+            </div>
           </div>
-          <div class="text-center mb-3">
-            <button type="submit" class="btn btn-primary rounded-3" style="background-color: #7620FF">Sign Up</button>
-          </div>
-          <div class="text-center text-white mb-3">
-            <p>Already have an account? <a class="text-decoration-none" href="{{url_for('signin')}}">Login</a></p>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
