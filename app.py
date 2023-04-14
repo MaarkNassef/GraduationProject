@@ -47,4 +47,7 @@ def hrHome():
     result = getHrJobDescription(session['ID'])
     return render_template('hrhome.html',Data = result)
 
+@app.route('/aboutus')
+def aboutus():
+    return render_template('Aboutus.html')
 
