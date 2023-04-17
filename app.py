@@ -51,3 +51,7 @@ def hrHome():
 def aboutus():
     return render_template('Aboutus.html')
 
+@app.route('/getstarted')
+def getstarted():
+    return render_template('Getstarted.html')
+

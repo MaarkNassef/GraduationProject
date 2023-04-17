@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Get Started{% endblock %}
+{% block content %}
+
+<div class="getstarted ">
+    <div class="text-center pt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 text-center text-md-start ">
+                    <h1 class="text-white text-md-start">We are Digital
+                        Agency.</h1><br><br>
+                    <p class="text-white fs-6">
+                        HR Assistant is an innovative project designed to streamline the recruitment process for
+                        companies. With this tool, recruiters can quickly and efficiently identify potential
+                        candidates who possess the skills and experience necessary to excel in a given role.
+                    </p>
+                    <a class="btn btn-outline-primary rounded-pill m-5 text-white  "
+                        style="color:#7620FF ; padding: 0.5rem 1.99999rem ;" href="#">Get Started</a><br><br>
+                </div>
+                <div class="col-lg-9">
+                    <img src="{{url_for('static' ,filename='PhotoGetStarted/GetStarted photo.png')}}" alt="labtop" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
