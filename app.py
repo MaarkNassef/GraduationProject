@@ -8,11 +8,11 @@ def signUp():
     if request.method=='GET':
         return render_template('signUp.html')
     else:
-        name=request.form['Name']
-        email=request.form['Email']
-        password=request.form['Password']
-        confirmationPassword=request.form['comfirmationPassword']
-        company_name=request.form['CompanyName']
+        name=request.form['name']
+        email=request.form['email']
+        password=request.form['password']
+        confirmationPassword=request.form['confirmPassword']
+        company_name=request.form['companyName']
         if(password!=confirmationPassword):
              flash("Password doesn't match!!! ")
         else:
@@ -46,3 +46,8 @@ def signin():
 def hrHome():
     result = getHrJobDescription(session['ID'])
     return render_template('hrHomee.html',Data = result)
+
+@app.route('/aboutus')
+def aboutus():
+    return render_template('Aboutus.html')
+
