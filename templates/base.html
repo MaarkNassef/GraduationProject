@@ -49,7 +49,7 @@
                         {% endif %}
                     </ul>
                     {% if 'ID' in session: %} <!--Signed In-->
-                    <button class="btn btn-primary rounded-pill" href="#">Logout</button>
+                    <a class="btn btn-primary rounded-pill text-decoration-none" href="{{url_for('logout')}}">Logout</a>
                     {% endif %}
                 </div>
                 {% if 'ID' not in session: %}

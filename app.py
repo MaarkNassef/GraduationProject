@@ -51,3 +51,7 @@ def hrHome():
 def aboutus():
     return render_template('Aboutus.html')
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('signin'))
