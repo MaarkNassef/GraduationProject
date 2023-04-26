@@ -20,7 +20,7 @@
     <div>
         <nav class="navbar navbar-expand-lg  ">
             <div class="container">
-                <a class="navbar-brand" style="display: inline;" href="#">
+                <a class="navbar-brand" style="display: inline;" href="/">
                     <img src="{{url_for('static' ,filename='Photo/logo.png')}}" alt="" />
                     <span class="hr" style=color:white;>HR Assistant</span>
                 </a>
@@ -35,10 +35,10 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Home</a>
+                            <a class="nav-link " aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="{{url_for('aboutus')}}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -56,13 +56,12 @@
                 <div class="collapse navbar-collapse" id="main">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <button type="button" class="btn btn-primary rounded-pill mx-3 mb-3"> <a class="nav-button2"
-                                    href="#">Log in</a></button>
+                            <a class="nav-button2 btn btn-primary rounded-pill mx-3 mb-3 text-decoration-none"
+                                    href="{{url_for('signin')}}">Log in</a>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="btn btn-outline-primary rounded-pill">
-                                <a class="nav-button2" href="#">Get Started</a>
-                            </button>
+                            <a class="nav-button2 btn btn-outline-primary rounded-pill text-decoration-none" 
+                                href="{{url_for('signUp')}}">Get Started</a>
                         </li>
                     </ul>
                 </div>
@@ -98,22 +97,22 @@
                     <div class="links">
                         <h5 class="text-light">Links</h5>
                         <ul class="list-unstyled lh-lg">
-                            <li><a class="navbar-brand" href="#">Home</a></li>
+                            <li><a class="navbar-brand" href="/">Home</a></li>
                             <li><a class="navbar-brand" href="#">Contact US</a></li>
+                            <li><a class="navbar-brand" href="{{url_for('aboutus')}}">About Us</a></li>
                             <li><a class="navbar-brand" href="#">Ask for Help</a></li>
                             <li><a class="navbar-brand" href="#">Terms and Condition</a></li>
+                            <li><a class="navbar-brand" href="#">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-2">
                     <div class="links">
-                        <h5 class="text-light">About Us</h5>
+                        <h5 class="text-light">Authentication</h5>
                         <ul class="list-unstyled lh-lg">
-                            <li><a class="navbar-brand" href="#">Sign In</a></li>
-                            <li><a class="navbar-brand" href="#">Register</a></li>
-                            <li><a class="navbar-brand" href="#">About Us</a></li>
+                            <li><a class="navbar-brand" href="{{url_for('signin')}}">Sign In</a></li>
+                            <li><a class="navbar-brand" href="{{url_for('signUp')}}">Register</a></li>
                             <li><a class="navbar-brand" href="#">Forget Password</a></li>
-                            <li><a class="navbar-brand" href="#">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
