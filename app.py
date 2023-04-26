@@ -45,7 +45,7 @@ def signin():
 @app.route('/hrHomePage')
 def hrHome():
     result = getHrJobDescription(session['ID'])
-    return render_template('hrhome.html',Data = result)
+    return render_template('hrHomee.html',Data = result)
 
 @app.route('/aboutus')
 def aboutus():
