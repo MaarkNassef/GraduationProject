@@ -60,7 +60,8 @@ def addJob():
     else:   
         jobName = request.form['jobName']
         jobDescription = request.form['jobDescription']
-        if(jobName!="" and jobDescription!=""):
-            addJobOpportunity(session['ID'],jobName,jobDescription)
+        imageSource=request.form['imageSource']
+        if(jobName!="" and jobDescription!="" and imageSource!=""):
+            addJobOpportunity(session['ID'],jobName,jobDescription,imageSource)
             return redirect(url_for('home'))
         
