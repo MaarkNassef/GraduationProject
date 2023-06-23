@@ -1,5 +1,4 @@
 -- Drop tables if they exist
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS hrjobdescription;
 DROP TABLE IF EXISTS faqs;
 DROP TABLE IF EXISTS form;
@@ -35,6 +34,7 @@ CREATE TABLE application (
   file MEDIUMBLOB,
   skills TEXT,
   similarity FLOAT,
+  experience INT,
   jobid INT,
   PRIMARY KEY (id),
   FOREIGN KEY (jobid) REFERENCES job(id)
