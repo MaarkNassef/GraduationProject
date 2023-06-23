@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Upload type{% endblock %}
+{% block content %}
+<br>
+        <br>
+        <div class="bg-light bg-opacity-10 rounded-5 col-lg-7 col-md-6 col-sm-6 m-auto  align-items-center">
+            <br>
+            <h4 class="mx-5 mb-3 text-white ">Choose how to apply for job :</h4>
+            <div class="container col-lg-12 col-md-6 col-sm-6 align-items-center ">
+              <div class="row">
+                <div class="card bg-light bg-opacity-10 rounded-5 mx-5 my-5 align-items-center" style="width: 22rem;">
+                  <img src="{{url_for('static' ,filename='Upload Type photos/CV Photo.jpg')}}" class="my-4 rounded-4 img-fluid" alt="...">
+                  <div class="card-body">
+                    <a href="#" class=" btn btn-outline-primary">Send CV</a>
+                  </div>
+                </div>
+          
+                <div class="card bg-light bg-opacity-10 rounded-5 m-auto my-5 align-items-center" style="width: 22rem;">
+                  <img src="{{url_for('static' ,filename='Upload Type photos/Form Photo.jpg')}}" class=" my-4 rounded-4 img-fluid" alt="...">
+                  <div class="card-body">
+                    <a href="#" class="btn btn-outline-primary">Fill Form</a>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+            <div class="align-items-center d-flex justify-content-center">
+              <a href="#" class="align-items-center btn btn-outline-primary">Back</a>
+            </div>
+            <br>
+          </div>
+        <br>
+{% endblock %}

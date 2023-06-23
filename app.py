@@ -46,7 +46,15 @@ def signin():
 @app.route('/aboutus')
 def aboutus():
     return render_template('Aboutus.html')
-
+@app.route('/FillForm')
+def FillForm():
+    return render_template('FillForm.html')
+@app.route('/AddJobForm')
+def AddJobForm():
+    return render_template('AddJobForm.html')
+@app.route('/BrowseJob')
+def BrowseJob():
+    return render_template('BrowseJob.html')
 @app.route('/logout')
 def logout():
     session.clear()
@@ -55,7 +63,18 @@ def logout():
 @app.route('/contactus')
 def contactus():
     return render_template('contactus.html')
-
+@app.route('/Getstarted')
+def Getstarted():
+    return render_template('Getstarted.html')
+@app.route('/Uploadtype')
+def Uploadtype():
+    return render_template('Uploadtype.html')
+@app.route('/NotFound')
+def NotFound():
+    return render_template('Notfound.html')
+@app.route('/UploadCv')
+def Uploadcv():
+    return render_template('UploadCv.html')
 @app.route('/addOpportunity',methods=['GET','POST'])
 def addJob():
     if (request.method=='GET'):
