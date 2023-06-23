@@ -51,3 +51,6 @@ def aboutus():
 def logout():
     session.clear()
     return redirect(url_for('signin'))
+@app.route('/contactus')
+def contactus():
+    return render_template('contactus.html')
