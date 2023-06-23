@@ -51,3 +51,16 @@ def aboutus():
 def logout():
     session.clear()
     return redirect(url_for('signin'))
+
+
+@app.route('/addOpportunity',methods=['GET','POST'])
+def addJob():
+    if (request.method=='GET'):
+       return render_template('addOpportunities.html')
+    else:   
+        jobName = request.form['jobName']
+        jobDescription = request.form['jobDescription']
+        if(jobName!="" and jobDescription!=""):
+            addJobOpportunity(session['ID'],jobName,jobDescription)
+            return redirect(url_for('home'))
+        
