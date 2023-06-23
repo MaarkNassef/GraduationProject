@@ -43,7 +43,7 @@ def getJobDetails(id):
 
 def getApplicants(id):
     cursor = conn.cursor()
-    cursor.execute('SELECT application.skills,application.similarity,application.experience FROM job,application WHERE  job.id =application.jobid and job.id= %s '  , (id,))
+    cursor.execute('SELECT application.filename,application.similarity,application.experience, application.skills, application.id FROM job,application WHERE application.jobid= %s ORDER BY similarity DESC'  , (id,))
 
     result = cursor.fetchall()
     return result
@@ -60,8 +60,25 @@ def get_otp(uid):
     result = cursor.fetchone()[0]
     return result
 
+def get_active(id):
+    cursor = conn.cursor()
+    cursor.execute('SELECT active FROM job WHERE id = %s' , (id,))
+    result = cursor.fetchone()[0]
+    return result
+
 def set_otp(uid, otp):
     cursor = conn.cursor()
     cursor.execute('UPDATE users SET otp=%s WHERE id=%s' , (otp, uid))
     conn.commit()
-    
+
+def deactivate_job(jid):
+    cursor = conn.cursor()
+    cursor.execute('UPDATE job SET active=%s WHERE id=%s' , (0, jid))
+    conn.commit()
+
+def save_similarity(applicants_id: list[int], similarities:list[float]):
+    cursor = conn.cursor()
+    for i in range(len(applicants_id)):
+        cursor.execute('UPDATE application SET similarity=%s WHERE id=%s' , (float(similarities[i]), applicants_id[i]))
+        conn.commit()
+        print((float(similarities[i]), applicants_id[i]))

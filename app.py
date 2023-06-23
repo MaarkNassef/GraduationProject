@@ -1,5 +1,6 @@
 from flask import Flask,render_template,redirect,url_for,request,flash,session
 from database import *
+from BackendClasses.Similarity import Similarity
 import hashlib
 import pyotp
 
@@ -122,3 +123,13 @@ def removeOppurtunity(ID):
     deleteJobOpportunity(ID)
     return redirect(url_for('home'))
     
+@app.route('/get-best-applicants/<int:jobid>')
+def process(jobid):
+    if jobid in [i[2] for i in getHrJobOpportunity(session['ID'])] and get_active(jobid)==1:
+        deactivate_job(jobid)
+        data = getApplicants(jobid)
+        applicants_id = [i[4] for i in data]
+        similarity = Similarity([i[3] for i in data], getJobDetails(jobid)[1])
+        save_similarity(applicants_id, similarity)
+        return redirect(url_for('showJobDetails',ID=jobid))
+    return redirect(url_for('showJobDetails',ID=jobid))

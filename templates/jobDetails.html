@@ -1,29 +1,72 @@
 {% extends 'base.html' %}
 {% block title %}Add Job Opportunity{% endblock %}
 {% block content %}
-<h1>{{details[0]}}</h1>
-<h1>{{details[1]}}</h1>
-<h1>{{details[3]}}</h1>
+<br><br>
 
-<table class="table">
+<div class="container col-lg-9  bg-light bg-opacity-10 rounded-5 align-items-center  ">
+
+    <br><br>
+    <div class="container">
+      <a class="btn btn-danger float-end text-decoration-none" href="{{url_for('removeOppurtunity',ID=details[2])}}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+    
+    <h4 class="mx-3 mb-3 text-white ">{{details[0]}}</h4>
+    <br>
+    <div>
+        <h6 class="mx-5 mb-4 text-white"> <i class="mx-2 fa-solid fa-house text-white mx-2"></i>{{details[3]}}</h6>
+    </div>
+    <div class="col-10 mx-5  text-white">
+        <h5 class=" mt-3"> Job Description:</h5>
+        <p> 
+            {{details[1]}}
+        </p>
+    </div>
+    <br><br>
+
+
+
+    <div class="align-items-center d-flex justify-content-center">
+        <a href="/" class="align-items-center btn btn-outline-primary">Back</a>
+        <a href="{{url_for('process',jobid=details[2])}}" class="mx-3 btn btn-primary">Process <i class="fa-solid fa-gear"></i></a>
+    </div>
+    <br>
+</div>
+<div class="col-9 mx-auto">
+{% if applicants|length > 0 %}
+<table class="table table-hover rounded-3 mt-3" style="border-radius: 10px; border-collapse: collapse;">
     <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">skills</th>
-        <th scope="col">similarity</th>
-        <th scope="col">experience</th>
-      </tr>
+        <tr>
+            <th scope="col" class="table-active">
+                <h6 class="display-6 fs-4">#</h6>
+            </th>
+            <th scope="col" class="table-active">
+                <h6 class="display-6 fs-4">File Name</h6>
+            </th>
+            <th scope="col" class="table-active">
+                <h6 class="display-6 fs-4">Experience</h6>
+            </th>
+            <th scope="col" class="table-active">
+                <h6 class="display-6 fs-4">View Resume</h6>
+            </th>
+            <!-- <th scope="col">
+                <h6 class="display-6 fs-4">Similarity</h6>
+            </th> -->
+        </tr>
     </thead>
     <tbody>
-        {% for applicant in applicants %}
-      <tr>
-        <th scope="row">{{ loop.index }}</th>
-        <td>{{applicant[0]}}</td>
-        <td>{{applicant[1]}}</td>
-        <td>{{applicant[2]}}</td>
-      </tr>
-      {% endfor %}
+        {% for row in applicants: %}
+        <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td><h6 class="display-6 fs-5">{{row[0]}}</h6></td>
+            <td><h6 class="display-6 fs-5">{{row[2]}}</h6></td>
+            <td><a href="#" class="text-decoration-none">View Resume</a></td>
+            <!-- <td>
+                <h6 class="display-6 fs-5">{{row[1]}}</h6>
+            </td> -->
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
-<a href="{{url_for('removeOppurtunity',ID=details[2])}}" class="btn btn-primary rounded-pill main-btn text-white w-75 h-auto">delete Opportunity</a>
+{% endif %}
+</div>
 {% endblock %}
