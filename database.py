@@ -54,3 +54,7 @@ def deleteJobOpportunity(ID):
 
     conn.commit()
 
+def fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,jobID,userObjective):
+    cursor = conn.cursor()
+    cursor.execute('insert into form(name,email,education,skills,address,phone_number,projects,experience,similarity,jobid,Objective) values(%s, %s,%s,%s, %s, %s,%s,%s,%s,%s,%s)',(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,0,jobID,userObjective))
+    conn.commit()

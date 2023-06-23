@@ -3,8 +3,7 @@
 {% block content %}
 <h1>{{details[0]}}</h1>
 <h1>{{details[1]}}</h1>
-<h1>{{details[3]}}</h1>
-
+<h1><a href="{{url_for('Uploadtype',ID=details[2])}}">https://apply/{{details[2]}}</a></h1>
 <table class="table">
     <thead>
       <tr>
