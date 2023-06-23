@@ -23,6 +23,9 @@ def signUp():
        
 @app.route('/')
 def home():
+    if 'ID' in session:
+        result = getHrJobOpportunity(session['ID'])
+        return render_template('hrHomee.html',Data = result)
     return render_template('base.html')
 
 @app.route('/signIn',methods=['GET','POST'])
@@ -38,15 +41,8 @@ def signin():
         else:  
             session['Email']=email
             session['ID'] =id
-            return redirect(url_for('hrHome'))
+            return redirect(url_for('home'))
   
-
-
-@app.route('/hrHomePage')
-def hrHome():
-    result = getHrJobDescription(session['ID'])
-    return render_template('hrHomee.html',Data = result)
-
 @app.route('/aboutus')
 def aboutus():
     return render_template('Aboutus.html')
