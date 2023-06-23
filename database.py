@@ -32,5 +32,5 @@ def getHrJobOpportunity(id):
 
 def addJobOpportunity(user_id,job_name,job_description):
     cursor = conn.cursor()
-    cursor.execute('insert into hrjobdescription(userId,jobName,jobDescription) values(%s, %s,%s)',(user_id,job_name,job_description))
+    cursor.execute('insert into job(userid,jobname,description) values(%s, %s,%s)',(user_id,job_name,job_description))
     conn.commit()
