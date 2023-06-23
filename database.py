@@ -54,3 +54,14 @@ def deleteJobOpportunity(ID):
 
     conn.commit()
 
+def get_otp(uid):
+    cursor = conn.cursor()
+    cursor.execute('SELECT otp FROM users WHERE id = %s' , (uid,))
+    result = cursor.fetchone()[0]
+    return result
+
+def set_otp(uid, otp):
+    cursor = conn.cursor()
+    cursor.execute('UPDATE users SET otp=%s WHERE id=%s' , (otp, uid))
+    conn.commit()
+    

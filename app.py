@@ -1,5 +1,7 @@
 from flask import Flask,render_template,redirect,url_for,request,flash,session
 from database import *
+import hashlib
+import pyotp
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Amir Secret key'
@@ -16,7 +18,7 @@ def signUp():
         if(password!=confirmationPassword):
              flash("Password doesn't match!!! ")
         else:
-            
+            password = hashlib.sha256(password.encode('utf-8')).hexdigest()
             signUpRegistration(name,email,password,company_name)
        
         return redirect(url_for('signin'))
@@ -35,13 +37,35 @@ def signin():
     else:   
         email = request.form['email']
         password = request.form['password']
+        password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         id=authenticate(email=email,password=password)
         if id ==-1 :
             pass
         else:  
             session['Email']=email
-            session['ID'] =id
-            return redirect(url_for('home'))
+            session['tid'] =id
+            return redirect(url_for('totp'))
+        
+@app.route('/signin/2fa', methods = ['GET', 'POST'])
+def totp():
+    if 'tid' not in session:
+        return redirect('/')
+    if request.method == 'GET':
+        otp = get_otp(session['tid'])
+        if otp:
+            return render_template('twofa.html', secret=None)
+        otp = pyotp.random_base32()
+        set_otp(session['tid'], otp)
+        return render_template('twofa.html', secret=otp)
+    token = get_otp(session['tid'])
+    otp = int(request.form.get('otp'))
+    if pyotp.TOTP(token).verify(otp):
+        session['ID'] = session['tid']
+        session.pop('tid')
+        return redirect(url_for("home"))
+    else:
+        flash("You have supplied an invalid 2FA token!", "danger")
+        return redirect(url_for("totp"))
   
 @app.route('/aboutus')
 def aboutus():
