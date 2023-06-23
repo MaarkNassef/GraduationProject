@@ -78,7 +78,7 @@ def Uploadcv():
 @app.route('/addOpportunity',methods=['GET','POST'])
 def addJob():
     if (request.method=='GET'):
-       return render_template('addOpportunities.html')
+       return render_template('AddJobForm.html')
     else:   
         jobName = request.form['jobName']
         jobDescription = request.form['jobDescription']

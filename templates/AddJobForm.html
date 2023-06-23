@@ -3,6 +3,7 @@
 {% block content %}
 <br><br>
 <br><br>
+<form method="post">
 <div class="container col-lg-9  bg-light bg-opacity-10 rounded-5 align-items-center  ">
 
     <br><br>
@@ -10,68 +11,35 @@
     <br>
 
     <div class="row g-3 d-flex justify-content-center">
-
-        <div class="col-lg-3 ">
-            <label for="Name" class="mx-3 fs-5 text-white">Job Tiitle</label>
-            <input type="text" class="form-control bg-transparent text-white" id="Name" name="Name"
-                style="border-color: #6354FB; border-width: 2px; " placeholder="">
+        <div class="col-lg-5 mt-3">
+            <label for="jobName" class="mx-3 fs-5 text-white">Job Tiitle</label>
+            <input type="text" class="form-control bg-transparent text-white" id="jobName" name="jobName"
+                style="border-color: #6354FB; border-width: 2px; " placeholder="Enter Job Name...">
         </div>
-
-        <div class="col-lg-5">
-        <label for="Job Type" class="mx-3 fs-5 text-white">Job Type</label>
-           <select class="form-control bg-transparent text-white " id="select" name="select" style="border-color: #6354FB; border-width: 2px; ">   
-            <option class="form-control bg-transparent " value="1"> </option>
-            <option  class="form-control bg-transparent " value="2">Full-time</option>
-            <option  class="form-control bg-transparent " value="3">Part-time</option>
-            <option  class="form-control bg-transparent " value="4">Temporary Job</option>
-            <option  class="form-control bg-transparent " value="5">InternShip</option>
-          </select>
-        </div>
-
-        <div class="col-lg-3">
-            <label for="Phone Number" class="mx-3 fs-5 text-white">Company Name</label>
-            <input type="text" class="form-control bg-transparent text-white" id="Company Name"
-                name="Company Name" style="border-color: #6354FB; border-width: 2px; " placeholder="">
-        </div>
-
     </div>
-
-    <div class="row g-3 d-flex justify-content-center mt-1">
-
+    <div class="row g-3 d-flex justify-content-center">
         <div class="col-lg-5 mt-3">
             <label for="Address" class="mx-3 fs-5 text-white">Image link</label>
-            <input type="text" class="form-control bg-transparent text-white" id="Image link" name="Image link"
-                style="border-color: #6354FB; border-width: 2px; " placeholder="">
-        </div>
-      
-        <div class=" col-1"></div>
-    
-        <div class="col-lg-5 ">
-
-            <label for="Objective" class="mx-3 fs-5 text-white">Job Description</label>
-            <textarea type="txet" class="form-control bg-transparent text-white" id="Objective" name="Objective"
-                style=" border-color: #6354FB; border-width:2px;"  placeholder=""></textarea>
-           
+            <input type="text" class="form-control bg-transparent text-white" id="imageSource" name="imageSource"
+                style="border-color: #6354FB; border-width: 2px; " placeholder="Enter Image Source...">
         </div>
     </div>
-
+      
     <div class="row g-3 d-flex justify-content-center">
-
-        <div class="col-lg-5 ">
-            <label for="Education" class="mx-3 fs-5 text-white">Requirements</label>
-            <textarea type="text" class="form-control bg-transparent text-white" id="Education" name="Education"
-                style=" border-color: #6354FB; border-width: 2px;"  placeholder=""></textarea>
+        <div class="col-lg-5 mt-3 ">
+            <label for="jobDescription" class="mx-3 fs-5 text-white">Job Description</label>
+            <textarea type="txet" class="form-control bg-transparent text-white" id="jobDescription" name="jobDescription"
+                style=" border-color: #6354FB; border-width:2px;"  placeholder="Enter Job Description..."></textarea>
         </div>
-      
-       
     </div>
-
+  
     <br><br>
-    <div class="align-items-center d-flex justify-content-center">
-        <a href="#" class="align-items-center   btn btn-outline-primary">Confirm</a>
-      </div>
+      <div class="align-items-center d-flex justify-content-center">
+        <button type="submit" class="align-items-center   btn btn-outline-primary">Add opportunity</button>
+    </div>
       <br>
 </div>
+</form>
 <br><br>
 <br><br>
 {% endblock %}
