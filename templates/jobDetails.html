@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Add Job Opportunity{% endblock %}
+{% block content %}
+<h1>{{details[0]}}</h1>
+<h1>{{details[1]}}</h1>
+<h1>{{details[3]}}</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">skills</th>
+        <th scope="col">similarity</th>
+        <th scope="col">experience</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for applicant in applicants %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{applicant[0]}}</td>
+        <td>{{applicant[1]}}</td>
+        <td>{{applicant[2]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<a href="{{url_for('removeOppurtunity',ID=details[2])}}" class="btn btn-primary rounded-pill main-btn text-white w-75 h-auto">delete Opportunity</a>
+{% endblock %}
