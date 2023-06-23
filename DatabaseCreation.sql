@@ -37,7 +37,7 @@ CREATE TABLE application (
   experience INT,
   jobid INT,
   PRIMARY KEY (id),
-  FOREIGN KEY (jobid) REFERENCES job(id)
+  FOREIGN KEY (jobid) REFERENCES job(id) ON DELETE CASCADE
 );
 
 CREATE TABLE form (
