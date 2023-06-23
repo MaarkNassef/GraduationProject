@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Add Job Opportunity{% endblock %}
+{% block content %}
+<form method="post">
+    <div>
+        <div class="form-floating mb-4 mx-3">
+            <input type="text" class="form-control bg-transparent text-white" id="jobName" name="jobName"
+                style="border-color: #6354FB; border-width: 3px;" placeholder="Enter Job Name..." required>
+            <label for="jobName" class="text-white">Job Name</label>
+        </div>
+        <div class="form-floating mb-4 mx-3">
+            <input type="text" class="form-control bg-transparent text-white" id="jobDescription"
+                name="jobDescription" style="border-color: #6354FB; border-width: 3px;"
+                placeholder="Enter Job Description..." required>
+            <label for="jobDescription" class="text-white">Job Description</label>
+        </div>
+        <div class="text-center mb-4">
+            <button type="submit" class="btn btn-primary rounded-3"
+                style="background-color: #7620FF">Add opportunity</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
