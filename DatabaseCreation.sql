@@ -32,6 +32,7 @@ CREATE TABLE job (
 
 CREATE TABLE application (
   id INT AUTO_INCREMENT,
+  filename TEXT,
   file MEDIUMBLOB,
   skills TEXT,
   similarity FLOAT,
@@ -50,6 +51,7 @@ CREATE TABLE form (
   address VARCHAR(255),
   phone_number VARCHAR(255),
   projects TEXT,
+  objective TEXT,
   experience TEXT,
   similarity FLOAT,
   jobid INT,
