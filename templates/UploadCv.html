@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Upload Cv{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/Uploadcv.css')}}">
+
+<br>
+<br>
+<div class="bg-light bg-opacity-10 rounded-5 col-lg-7 col-sm-6 col-md-6  m-auto  align-content-center">
+    <br>
+    <h4 class="mx-5 mb-3 text-white "> Upload your File :</h4>
+
+    <div class="containerr  justify-content-center ">
+
+        <div class="drag-area">
+            <div class="icon">
+                <i class="fas fa-images"></i>
+            </div>
+
+            <span class="header">Drag & Drop</span>
+            <span class="header">or <span class="button">browse</span></span>
+            <input type="file" hidden />
+            <span class="support">Supports: PDF<!-- ,Word, JPEG, JPG, PNG--></span>
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <script src="..\static\js\scrpit.js"></script>
+    <br>
+    <a style="width: 10.25rem;" class=" Submit align-items-center d-flex justify-content-center btn btn-primary mx-auto"
+        href="#">Submit</a>
+    <br>
+    <br>
+</div>
+<br> <br>
+
+</div>
+{% endblock %}
