@@ -52,6 +52,9 @@ def logout():
     session.clear()
     return redirect(url_for('signin'))
 
+@app.route('/contactus')
+def contactus():
+    return render_template('contactus.html')
 
 @app.route('/addOpportunity',methods=['GET','POST'])
 def addJob():
@@ -64,7 +67,6 @@ def addJob():
         if(jobName!="" and jobDescription!="" and imageSource!=""):
             addJobOpportunity(session['ID'],jobName,jobDescription,imageSource)
             return redirect(url_for('home'))
-        
 
 @app.route('/jobDetails/<int:ID>')
 def showJobDetails(ID):
@@ -76,6 +78,4 @@ def showJobDetails(ID):
 def removeOppurtunity(ID):
     deleteJobOpportunity(ID)
     return redirect(url_for('home'))
-    
-
     
