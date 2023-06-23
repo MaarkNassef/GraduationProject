@@ -23,6 +23,9 @@ def signUp():
        
 @app.route('/')
 def home():
+    if 'ID' in session:
+        result = getHrJobOpportunity(session['ID'])
+        return render_template('hrHomee.html',Data = result)
     return render_template('base.html')
 
 @app.route('/signIn',methods=['GET','POST'])
@@ -38,20 +41,28 @@ def signin():
         else:  
             session['Email']=email
             session['ID'] =id
-            return redirect(url_for('hrHome'))
+            return redirect(url_for('home'))
   
-
-
-@app.route('/hrHomePage')
-def hrHome():
-    result = getHrJobDescription(session['ID'])
-    return render_template('hrhome.html',Data = result)
-
 @app.route('/aboutus')
 def aboutus():
     return render_template('Aboutus.html')
 
-@app.route('/getstarted')
-def getstarted():
-    return render_template('Getstarted.html')
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('signin'))
 
+@app.route('/contactus')
+def contactus():
+    return render_template('contactus.html')
+
+@app.route('/addOpportunity',methods=['GET','POST'])
+def addJob():
+    if (request.method=='GET'):
+       return render_template('addOpportunities.html')
+    else:   
+        jobName = request.form['jobName']
+        jobDescription = request.form['jobDescription']
+        if(jobName!="" and jobDescription!=""):
+            addJobOpportunity(session['ID'],jobName,jobDescription)
+            return redirect(url_for('home'))

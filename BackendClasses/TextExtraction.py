@@ -30,3 +30,9 @@ def extract_text(file):
 def get_skills(text: str):
     skills = resumeparse.extract_skills(text)
     return skills
+
+def get_years_of_exp(text: str):
+    return resumeparse.calculate_experience(text)
+
+def get_designition(text: str):
+    return resumeparse.job_designition(text)
