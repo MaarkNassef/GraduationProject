@@ -20,13 +20,12 @@
   {% for data in Data %}
 
   <div class="col" width="26" height="238">
-    <a href="" class="text-decoration-none">
+    <a href="{{url_for('showJobDetails',ID=data[2])}}" class="text-decoration-none">
       <div class="card ">
-        <img src="static/Photo/15-155347_transparent-mobile-app-development-png-creative-android-app.png"
+        <img src="{{data[3]}}" width="30" height="243"
           class="card-img-top" alt="..." style="size:20% ;">
         <div class="card-body" style="background-color: #00004d; opacity: 0.7; color: white;">
           <h5 class="card-title" s>{{data[0]}}</h5>
-          <p class="card-text">{{data[1]}}</p>
         </div>
       </div>
     </a>

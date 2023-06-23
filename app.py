@@ -65,3 +65,17 @@ def addJob():
             addJobOpportunity(session['ID'],jobName,jobDescription,imageSource)
             return redirect(url_for('home'))
         
+
+@app.route('/jobDetails/<int:ID>')
+def showJobDetails(ID):
+    Details=getJobDetails(ID)
+    Applicants=getApplicants(ID)
+    return render_template('jobDetails.html',details = Details,applicants=Applicants)
+
+@app.route('/deleteOppurtunity/<int:ID>')
+def removeOppurtunity(ID):
+    deleteJobOpportunity(ID)
+    return redirect(url_for('home'))
+    
+
+    
