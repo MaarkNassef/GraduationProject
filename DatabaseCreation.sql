@@ -13,6 +13,7 @@ CREATE TABLE users (
   email VARCHAR(255),
   hashed_password VARCHAR(255),
   company_name VARCHAR(255),
+  otp TEXT,
   role VARCHAR(255),
   PRIMARY KEY (id)
 );
