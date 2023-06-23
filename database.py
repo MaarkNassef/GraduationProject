@@ -22,7 +22,7 @@ def signUpRegistration(name,email,password,companyName):
 
     conn.commit()
 
-def getHrJobDescription(id):
+def getHrJobOpportunity(id):
     cursor = conn.cursor()
     cursor.execute('SELECT jobName,jobDescription,jobId FROM hrJobDescription WHERE userId = %s' , (id,))
 
