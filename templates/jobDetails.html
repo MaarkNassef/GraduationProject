@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Add Job Opportunity{% endblock %}
 {% block content %}
+
 <link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
 <br><br>
 
@@ -16,6 +17,12 @@
     <br>
     <div>
         <h6 class="mx-5 mb-4 text-white"> <i class="mx-2 fa-solid fa-house text-white mx-2"></i>{{details[3]}}</h6>
+    </div>
+    <div class="col-10 mx-5  text-white">
+        <h5 class=" mt-3"> Form URL:</h5>
+        <p>
+            <a href="{{url_for('Uploadtype',ID=details[2])}}">https://127.0.0.1/apply/{{details[2]}}</a>
+        </p>
     </div>
     <div class="col-10 mx-5  text-white">
         <h5 class=" mt-3"> Job Description:</h5>

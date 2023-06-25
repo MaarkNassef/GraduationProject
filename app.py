@@ -71,9 +71,31 @@ def totp():
 @app.route('/aboutus')
 def aboutus():
     return render_template('Aboutus.html')
-@app.route('/FillForm')
-def FillForm():
-    return render_template('FillForm.html')
+@app.route('/FillForm/<int:ID>',methods=['GET','POST'])
+def FillForm(ID):
+
+    if (request.method=='GET'):
+        return render_template('FillForm.html')
+    else:   
+        userName = request.form['Name']
+        userEmail = request.form['Email']
+        userEducation = request.form['Education']
+        userSkills=request.form['Skills']
+        userAddress = request.form['Address']
+        userPhoneNumber = request.form['phoneNumber']
+        userProjects=request.form['Projects']
+        userExperience = request.form['Experience']
+        
+        userObjective = request.form['Objective']
+
+        if(userName!="" and userEmail!="" and userEducation!="" and userName!="" and userSkills!="" and userAddress!="" and userPhoneNumber!="" and userProjects!="" and userExperience!="" and userObjective!=""):
+            fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
+            return redirect(url_for('home'))
+
+
+
+
+    
 @app.route('/AddJobForm')
 def AddJobForm():
     return render_template('AddJobForm.html')
@@ -91,9 +113,13 @@ def contactus():
 @app.route('/Getstarted')
 def Getstarted():
     return render_template('Getstarted.html')
-@app.route('/Uploadtype')
-def Uploadtype():
-    return render_template('Uploadtype.html')
+@app.route('/Uploadtype/<int:ID>')
+def Uploadtype(ID):
+    return render_template('Uploadtype.html',id = ID)
+
+
+
+
 @app.route('/NotFound')
 def NotFound():
     return render_template('Notfound.html')

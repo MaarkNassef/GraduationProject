@@ -2,6 +2,7 @@
 {% block title %}Fill Form{% endblock %}
 {% block content %}
 <br><br>
+<form method="post">
 <div class="container col-lg-9  bg-light bg-opacity-10 rounded-5 align-items-center  ">
 
     <br><br>
@@ -13,19 +14,19 @@
         <div class="col-lg-3 ">
             <label for="Name" class="mx-3 fs-5 text-white">Name</label>
             <input type="text" class="form-control bg-transparent text-white" id="Name" name="Name"
-                style="border-color: #6354FB; border-width: 2px; " placeholder="">
+                style="border-color: #6354FB; border-width: 2px; " placeholder="Enter your name...">
         </div>
 
         <div class="col-lg-5">
-            <label for="E-mail" class="mx-3 fs-5 text-white">E-mail</label>
-            <input type="email" class="form-control bg-transparent text-white" id="E-mail" name="E-mail"
-                style=" border-color: #6354FB; border-width: 2px;"  placeholder="">
+            <label for="Email" class="mx-3 fs-5 text-white">E-mail</label>
+            <input type="email" class="form-control bg-transparent text-white" id="Email" name="Email"
+                style=" border-color: #6354FB; border-width: 2px;"  placeholder="Enter your email...">
         </div>
 
         <div class="col-lg-3">
-            <label for="Phone Number" class="mx-3 fs-5 text-white">Phone Number</label>
-            <input type="text" class="form-control bg-transparent text-white" id="Phone Number"
-                name="Phone Number" style="border-color: #6354FB; border-width: 2px; " placeholder="">
+            <label for="phoneNumber" class="mx-3 fs-5 text-white">Phone Number</label>
+            <input type="text" class="form-control bg-transparent text-white" id="phoneNumber"
+                name="phoneNumber" style="border-color: #6354FB; border-width: 2px; " placeholder="Enter your phone number...">
         </div>
 
     </div>
@@ -35,7 +36,7 @@
         <div class="col-lg-5 ">
             <label for="Address" class="mx-3 fs-5 text-white">Address</label>
             <input type="text" class="form-control bg-transparent text-white" id="Address" name="Address"
-                style="border-color: #6354FB; border-width: 2px; " placeholder="">
+                style="border-color: #6354FB; border-width: 2px; " placeholder="Enter your address...">
 
           
         </div>
@@ -46,7 +47,7 @@
 
             <label for="Objective" class="mx-3 fs-5 text-white">Objective</label>
             <textarea type="txet" class="form-control bg-transparent text-white" id="Objective" name="Objective"
-                style=" border-color: #6354FB; border-width:2px;"  placeholder=""></textarea>
+                style=" border-color: #6354FB; border-width:2px;"  placeholder="Enter your Objective..."></textarea>
            
         </div>
     </div>
@@ -64,7 +65,7 @@
         <div class="col-lg-5 ">
             <label for="Skills" class="mx-3 fs-5 text-white">Skills</label>
             <textarea type="text" class="form-control bg-transparent text-white" id="Skills" name="Skills"
-                style=" border-color: #6354FB; border-width:2px;"  placeholder=""></textarea>
+                style=" border-color: #6354FB; border-width:2px;"  placeholder="Enter your skills..."></textarea>
             
         </div>
     </div>
@@ -74,7 +75,7 @@
         <div class="col-lg-5 ">
             <label for="Projects" class="mx-3 fs-5 text-white">Projects</label>
             <textarea type="txet" class="form-control bg-transparent text-white" id="Projects" name="Projects"
-                style=" border-color: #6354FB; border-width:2px;"  placeholder=""></textarea>
+                style=" border-color: #6354FB; border-width:2px;"  placeholder="Enter your projects..."></textarea>
         </div>
       
         <div class=" col-1"></div>
@@ -82,16 +83,17 @@
         <div class="col-lg-5 ">
             <label for="Experience" class="mx-3 fs-5 text-white">Experience</label>
             <textarea type="txet" class="form-control bg-transparent text-white" id="Experience" name="Experience"
-                style=" border-color: #6354FB; border-width: 2px;"  placeholder=""></textarea>
+                style=" border-color: #6354FB; border-width: 2px;"  placeholder="Enter your experience..."></textarea>
         </div>
     </div>
 
     <br><br>
     <div class="align-items-center d-flex justify-content-center">
-        <a href="#" class="align-items-center   btn btn-outline-primary">Confirm</a>
-      </div>
+        <button type="submit" class="align-items-center   btn btn-outline-primary">Submit</button>
+    </div>
       <br>
 </div>
+</form>
 <br><br>
 
 {% endblock %}
