@@ -87,3 +87,8 @@
 .links ul li a:hover{
   color: #6354fb;
 }
+
+.wph::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
