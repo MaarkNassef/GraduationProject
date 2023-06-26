@@ -29,7 +29,7 @@ def home():
     if 'ID' in session:
         result = getHrJobOpportunity(session['ID'])
         return render_template('hrHomee.html',Data = result)
-    return render_template('base.html')
+    return render_template('Getstarted.html')
 
 @app.route('/signIn',methods=['GET','POST'])
 def signin():
@@ -71,9 +71,9 @@ def totp():
 @app.route('/aboutus')
 def aboutus():
     return render_template('Aboutus.html')
+
 @app.route('/FillForm/<int:ID>',methods=['GET','POST'])
 def FillForm(ID):
-
     if (request.method=='GET'):
         return render_template('FillForm.html')
     else:   
@@ -88,20 +88,17 @@ def FillForm(ID):
         
         userObjective = request.form['Objective']
 
-        if(userName!="" and userEmail!="" and userEducation!="" and userName!="" and userSkills!="" and userAddress!="" and userPhoneNumber!="" and userProjects!="" and userExperience!="" and userObjective!=""):
-            fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
-            return redirect(url_for('home'))
-
-
-
-
-    
+        fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
+        return redirect(url_for('home'))
+ 
 @app.route('/AddJobForm')
 def AddJobForm():
     return render_template('AddJobForm.html')
+
 @app.route('/BrowseJob')
 def BrowseJob():
     return render_template('BrowseJob.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
@@ -110,22 +107,23 @@ def logout():
 @app.route('/contactus')
 def contactus():
     return render_template('contactus.html')
+
 @app.route('/Getstarted')
 def Getstarted():
     return render_template('Getstarted.html')
+
 @app.route('/Uploadtype/<int:ID>')
 def Uploadtype(ID):
     return render_template('Uploadtype.html',id = ID)
 
-
-
-
 @app.route('/NotFound')
 def NotFound():
     return render_template('Notfound.html')
+
 @app.route('/UploadCv')
 def Uploadcv():
     return render_template('UploadCv.html')
+
 @app.route('/addOpportunity',methods=['GET','POST'])
 def addJob():
     if (request.method=='GET'):

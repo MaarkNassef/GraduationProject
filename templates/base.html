@@ -38,7 +38,7 @@
                             <a class="nav-link" href="{{url_for('aboutus')}}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="{{url_for('contactus')}}">Contact</a>
                         </li>
                         {% if 'ID' in session: %} <!--Signed In-->
                         <div class="search ps-3 pe-3 d-none d-lg-block">
@@ -95,7 +95,7 @@
                         <h5 class="text-light">Links</h5>
                         <ul class="list-unstyled lh-lg">
                             <li><a class="navbar-brand" href="/">Home</a></li>
-                            <li><a class="navbar-brand" href="#">Contact US</a></li>
+                            <li><a class="navbar-brand" href="{{url_for('contactus')}}">Contact US</a></li>
                             <li><a class="navbar-brand" href="{{url_for('aboutus')}}">About Us</a></li>
                             <li><a class="navbar-brand" href="#">Ask for Help</a></li>
                             <li><a class="navbar-brand" href="#">Terms and Condition</a></li>
