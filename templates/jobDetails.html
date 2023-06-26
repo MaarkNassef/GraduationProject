@@ -36,10 +36,28 @@
 
     <div class="align-items-center d-flex justify-content-center">
         <a href="/" class="align-items-center btn btn-outline-primary">Back</a>
+        {% if active > 0 %}
         <a href="{{url_for('process',jobid=details[2])}}" class="mx-3 btn btn-primary">Process <i
                 class="fa-solid fa-gear"></i></a>
+        {% else %}
+        <a href="" class="mx-3 btn btn-primary disabled">Process <i
+            class="fa-solid fa-gear"></i></a>
+        {% endif %}
     </div>
     <br>
+    <style>
+        :root {
+            --bs-body-bg: #fff0
+        }
+    </style>
+    <form method="post">
+      <div class="form-floating mb-3 col-8 mx-auto text-center">
+        <input type="number" class="form-control bg-transparent text-white" id="experience" name="experience" placeholder="experience"
+          style="border-color: #6354FB; border-width: 3px;" min="0">
+        <label for="experience" class="text-white">Experience</label>
+        <button type="submit" class="btn btn-primary my-3">Submit</button>
+      </div>
+    </form>
 </div>
 {% if applicants|length > 0 %}
 <table class="container mx-auto col-lg-8 col-md-6 col-sm-6 content-table table-striped">
@@ -60,7 +78,7 @@
             <td>{{loop.index}}</td>
             <td>{{row[0]}}</td>
             <td>{{row[2]}}</td>
-            <td><a href="#" class="text-decoration-none">View Resume</a></td>
+            <td><a href="/file/{{row[4]}}" class="text-decoration-none">View Resume</a></td>
             <!-- <td>{{row[1]}}</td> -->
             <!-- <td>
         <h6 class="display-6 fs-5">{{row[1]}}</h6>
