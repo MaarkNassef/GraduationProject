@@ -14,7 +14,7 @@ button.onclick = () => {
 input.addEventListener('change', function () {
   file = this.files[0];
   dropArea.classList.add('active');
-  displayFile();
+  // displayFile();
 });
 
 // when file is inside drag area
@@ -35,7 +35,7 @@ dropArea.addEventListener('drop', (event) => {
   event.preventDefault();
 
   file = event.dataTransfer.files[0];
-  displayFile();
+  // displayFile();
 });
 
 function displayFile() {
