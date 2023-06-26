@@ -2,6 +2,7 @@ from flask import Flask,render_template,redirect,url_for,request,flash,session, 
 from database import *
 from BackendClasses.Similarity import Similarity
 from BackendClasses.TextExtraction import *
+from BackendClasses.GenerateResume import RESUME_TEXT, GeneratePDF
 from io import BytesIO
 import hashlib
 import pyotp
@@ -90,12 +91,24 @@ def FillForm(ID):
         
         userObjective = request.form['Objective']
 
-        fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
+        r_txt = RESUME_TEXT.replace('{{NAME}}', userName)
+        r_txt = r_txt.replace('{{EMAIL}}',userEmail)
+        r_txt = r_txt.replace('{{EDUCATION}}',userEducation)
+        r_txt = r_txt.replace('{{SKILLS}}', userSkills)
+        r_txt = r_txt.replace('{{ADDRESS}}', userAddress)
+        r_txt = r_txt.replace('{{PHONE}}', userPhoneNumber)
+        r_txt = r_txt.replace('{{PROJECTS}}', userProjects)
+        r_txt = r_txt.replace('{{EXPERIENCE}}', userExperience)
+        r_txt = r_txt.replace('{{OBJECTIVE}}', userObjective)
+
+        pdf_file = GeneratePDF(r_txt)
+        filename = f'Generated_{userName}.pdf'
+        skills = get_skills(r_txt)
+        designation = get_designition(r_txt)
+        experience = get_years_of_exp(r_txt)
+        add_new_application(filename, pdf_file, ', '.join(skills), ', '.join(designation), experience, ID)
+        # fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
         return redirect(url_for('home'))
- 
-@app.route('/AddJobForm')
-def AddJobForm():
-    return render_template('AddJobForm.html')
 
 @app.route('/BrowseJob')
 def BrowseJob():
