@@ -157,3 +157,9 @@ def process(jobid):
         save_similarity(applicants_id, similarity)
         return redirect(url_for('showJobDetails',ID=jobid))
     return redirect(url_for('showJobDetails',ID=jobid))
+
+
+@app.route('/displayAllJobs')
+def dispalyAlljobs():
+   result=getAllJobs()
+   return render_template("allJobs.html", Data=result)

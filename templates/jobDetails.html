@@ -41,6 +41,7 @@
     </div>
     <br>
 </div>
+{% if 'ID' in session: %}
 {% if applicants|length > 0 %}
 <table class="container mx-auto col-lg-8 col-md-6 col-sm-6 content-table table-striped">
     <thead>
@@ -69,5 +70,6 @@
         {% endfor %}
     </tbody>
 </table>
+{%endif%}
 {%endif%}
 {% endblock %}

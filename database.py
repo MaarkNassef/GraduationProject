@@ -86,3 +86,9 @@ def save_similarity(applicants_id: list[int], similarities:list[float]):
     for i in range(len(applicants_id)):
         cursor.execute('UPDATE application SET similarity=%s WHERE id=%s' , (float(similarities[i]), applicants_id[i]))
         conn.commit()
+
+def getAllJobs():
+    cursor = conn.cursor()
+    cursor.execute('SELECT jobname,id,img_url FROM job')
+    result = cursor.fetchall()
+    return result
