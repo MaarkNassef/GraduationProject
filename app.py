@@ -1,6 +1,9 @@
-from flask import Flask,render_template,redirect,url_for,request,flash,session
+from flask import Flask,render_template,redirect,url_for,request,flash,session, send_file
 from database import *
 from BackendClasses.Similarity import Similarity
+from BackendClasses.TextExtraction import *
+from BackendClasses.GenerateResume import RESUME_TEXT, GeneratePDF
+from io import BytesIO
 import hashlib
 import pyotp
 
@@ -88,16 +91,24 @@ def FillForm(ID):
         
         userObjective = request.form['Objective']
 
-        fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
-        return redirect(url_for('home'))
- 
-@app.route('/AddJobForm')
-def AddJobForm():
-    return render_template('AddJobForm.html')
+        r_txt = RESUME_TEXT.replace('{{NAME}}', userName)
+        r_txt = r_txt.replace('{{EMAIL}}',userEmail)
+        r_txt = r_txt.replace('{{EDUCATION}}',userEducation)
+        r_txt = r_txt.replace('{{SKILLS}}', userSkills)
+        r_txt = r_txt.replace('{{ADDRESS}}', userAddress)
+        r_txt = r_txt.replace('{{PHONE}}', userPhoneNumber)
+        r_txt = r_txt.replace('{{PROJECTS}}', userProjects)
+        r_txt = r_txt.replace('{{EXPERIENCE}}', userExperience)
+        r_txt = r_txt.replace('{{OBJECTIVE}}', userObjective)
 
-@app.route('/BrowseJob')
-def BrowseJob():
-    return render_template('BrowseJob.html')
+        pdf_file = GeneratePDF(r_txt)
+        filename = f'Generated_{userName}.pdf'
+        skills = get_skills(r_txt)
+        designation = get_designition(r_txt)
+        experience = get_years_of_exp(r_txt)
+        add_new_application(filename, pdf_file, ', '.join(skills), ', '.join(designation), experience, ID)
+        # fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
+        return redirect(url_for('home'))
 
 @app.route('/logout')
 def logout():
@@ -116,16 +127,14 @@ def Getstarted():
 def Uploadtype(ID):
     return render_template('Uploadtype.html',id = ID)
 
-@app.route('/NotFound')
-def NotFound():
-    return render_template('Notfound.html')
-
-@app.route('/UploadCv')
-def Uploadcv():
-    return render_template('UploadCv.html')
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('Notfound.html'), 404
 
 @app.route('/addOpportunity',methods=['GET','POST'])
 def addJob():
+    if 'ID' not in session:
+        return redirect('/') # To be changed
     if (request.method=='GET'):
        return render_template('AddJobForm.html')
     else:   
@@ -136,20 +145,43 @@ def addJob():
             addJobOpportunity(session['ID'],jobName,jobDescription,imageSource)
             return redirect(url_for('home'))
 
-@app.route('/jobDetails/<int:ID>')
+@app.route('/jobDetails/<int:ID>', methods=['GET', 'POST'])
 def showJobDetails(ID):
+    if ('ID' not in session) or (ID not in [i[2] for i in getHrJobOpportunity(session['ID'])]):
+        return redirect(url_for('applyForJob', job_id=ID))
+    if request.method == 'GET':
+        Details=getJobDetails(ID)
+        Applicants=getApplicants(ID)
+        active = get_active(ID)
+        return render_template('jobDetails.html',details = Details,applicants=Applicants, active=active)
     Details=getJobDetails(ID)
-    Applicants=getApplicants(ID)
-    return render_template('jobDetails.html',details = Details,applicants=Applicants)
+    Applicants=getApplicantsByExp(ID, int(request.form['experience']))
+    apps = []
+    valid_designations = get_designition(Details[0]+'\t'+Details[1])
+    print(valid_designations)
+    def isApplicable(a_designation:list, j_designation:list)->bool:
+        for i in a_designation:
+            for j in j_designation:
+                if i == j:
+                    return True
+        return False
+    for i in Applicants:
+        app_designation = i[-1].split(', ')
+        if isApplicable(app_designation, valid_designations):
+            apps.append(i)
+    active = get_active(ID)
+    return render_template('jobDetails.html',details = Details,applicants=apps, active=active)
 
 @app.route('/deleteOppurtunity/<int:ID>')
 def removeOppurtunity(ID):
+    if ('ID' not in session) or (ID not in [i[2] for i in getHrJobOpportunity(session['ID'])]):
+        return redirect('/') # To be changed
     deleteJobOpportunity(ID)
     return redirect(url_for('home'))
     
 @app.route('/get-best-applicants/<int:jobid>')
 def process(jobid):
-    if jobid in [i[2] for i in getHrJobOpportunity(session['ID'])] and get_active(jobid)==1:
+    if 'ID' in session and jobid in [i[2] for i in getHrJobOpportunity(session['ID'])] and get_active(jobid)==1:
         deactivate_job(jobid)
         data = getApplicants(jobid)
         applicants_id = [i[4] for i in data]
@@ -157,3 +189,34 @@ def process(jobid):
         save_similarity(applicants_id, similarity)
         return redirect(url_for('showJobDetails',ID=jobid))
     return redirect(url_for('showJobDetails',ID=jobid))
+
+@app.route('/displayAllJobs')
+def dispalyAlljobs():
+   result=getAllJobs()
+   return render_template("allJobs.html", Data=result)
+
+@app.route('/file/<int:file_id>')
+def get_file(file_id: int):
+    return send_file(
+        BytesIO(get_file_by_id(file_id)),
+        mimetype='application/pdf'
+    )
+
+@app.route('/upload-resume/<int:job_id>', methods=['GET','POST'])
+def upload_resume(job_id : int ):
+    if request.method == 'GET':
+        return render_template('UploadCv.html')
+    file = request.files['UploadFile']
+    filename = file.filename
+    file = file.read()
+    resume_txt = extract_text(file)
+    skills = get_skills(resume_txt)
+    designation = get_designition(resume_txt)
+    experience = get_years_of_exp(resume_txt)
+    add_new_application(filename, file, ', '.join(skills), ', '.join(designation), experience, job_id)
+    return redirect('/')
+
+@app.route('/apply/<int:job_id>')
+def applyForJob(job_id: int):
+    Details=getJobDetails(job_id)
+    return render_template('BrowseJob.html', details=Details)

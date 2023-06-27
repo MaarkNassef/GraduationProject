@@ -1,71 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}Browse Job{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
 <br><br>
 
 <div class="container col-lg-9  bg-light bg-opacity-10 rounded-5 align-items-center  ">
 
     <br><br>
-    <h4 class="mx-3 mb-3 text-white ">Senior Python/Django Developer</h4>
+    <h4 class="mx-3 mb-3 text-white ">{{details[0]}}</h4>
     <br>
     <div>
-        <h6 class="mx-5 mb-3 text-white"> <i class="fa-solid fa-briefcase text-white mx-2"></i>Full-time ·
-            Mid-Senior level</h6>
-        <h6 class="mx-5 mb-3 text-white"> <i
-                class="fa-sharp fa-solid fa-building text-white mx-2"></i>1,001-5,000 employees · IT Services
-            and IT Consulting</h6>
-        <h6 class="mx-5 mb-4 text-white"> <i class="mx-2 fa-solid fa-house text-white mx-2"></i>Valeo</h6>
-        <div class="mx-5 mt-3 mb-5">
-            <a href="#" class="mx-3 btn btn-primary">Apply <i
-                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            <a href="#" class=" btn btn-outline-primary">Save<i class="mx-1 fa-regular fa-floppy-disk"></i></a>
-        </div>
+        <h6 class="mx-5 mb-4 text-white"> <i class="mx-2 fa-solid fa-house text-white mx-2"></i>{{details[3]}}</h6>
     </div>
     <div class="col-10 mx-5  text-white">
-        <h5 class=" mt-3"> About this job</h5>
+        <h5 class=" mt-3"> Job Description:</h5>
         <p>
-            An emerging company building out a matching platform in the surrogacy
-            space is looking for a Senior Python/Django Developer. The selected
-            candidate will help lead the development for building out the MVP while
-            managing a team of talented developers. The US-based company
-            informs, supports, and guides surrogates through the journey while also
-            connecting intended parents with mutually compatible, qualified
-            surrogates. This will be a full-time role requiring some overlap with the EST
-            time zone.
-        </p>
-        <h5 class=" mt-3">  Job Responsibilities:</h5>
-        <p>
-            . Integrate user-facing elements into applications
-            . Implement data security and protection within the application
-            . Integrate data storage solutions
-            . Design and implement reliable, low-latency, and highly performant
-            applications
-        </p>
-        <h5 class=" mt-3"> Job Responsibilities:</h5>
-        <p> 
-            . Bachelor’s/Master’s degree in Engineering, Computer Science (or
-            equivalent experience)
-            . At least 5 years of relevant experience as a Python/Django Developer
-            . Ability to work with Machine Learning, Mobile, Web Backend, and web
-            frontend
-            . Expertise in working with Data Engineering, Data Science, and DevOps
-            technologies
-            . Familiarity with front-end technologies like HTML5, JavaScript, CSS3, and
-            ORM libraries
-            . Fluency in English to collaborate with engineering managers
-            . Excellent time-management skills
-            . Ability to work under pressure and meet deadlines
+            {{details[1]}}
         </p>
     </div>
     <br><br>
 
-
-
     <div class="align-items-center d-flex justify-content-center">
-        <a href="#" class="align-items-center btn btn-outline-primary">Back</a>
+        <a href="/" class="align-items-center btn btn-outline-primary">Back</a>
+        <a href="{{url_for('Uploadtype',ID=details[2])}}" class="mx-3 btn btn-primary">Apply</a>
     </div>
     <br>
 </div>
-<br><br>
-<br><br>
 {% endblock %}

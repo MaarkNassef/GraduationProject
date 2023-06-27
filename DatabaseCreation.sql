@@ -35,6 +35,7 @@ CREATE TABLE application (
   filename TEXT,
   file MEDIUMBLOB,
   skills TEXT,
+  designation TEXT,
   similarity FLOAT,
   experience INT,
   jobid INT,

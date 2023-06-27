@@ -86,3 +86,28 @@ def save_similarity(applicants_id: list[int], similarities:list[float]):
     for i in range(len(applicants_id)):
         cursor.execute('UPDATE application SET similarity=%s WHERE id=%s' , (float(similarities[i]), applicants_id[i]))
         conn.commit()
+
+def getAllJobs():
+    cursor = conn.cursor()
+    cursor.execute('SELECT jobname,id,img_url FROM job')
+    result = cursor.fetchall()
+    return result
+
+def get_file_by_id(aid):
+    cursor = conn.cursor()
+    cursor.execute('SELECT file FROM application WHERE id = %s' , (aid,))
+    result = cursor.fetchone()[0]
+    return result
+
+def add_new_application(filename: str, file: bytes, skills: str, designation: str, exp: int, jobid: int):
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO application (filename, file, skills, designation, experience, jobid) VALUES (%s, %s, %s, %s, %s, %s)"
+                   , (filename, file, skills, designation, exp, jobid))
+    conn.commit()
+
+def getApplicantsByExp(id, exp):
+    cursor = conn.cursor()
+    cursor.execute('SELECT application.filename,application.similarity,application.experience, application.skills, application.id, application.designation FROM job,application WHERE application.jobid= %s AND experience >= %s ORDER BY similarity DESC'  , (id,exp))
+
+    result = cursor.fetchall()
+    return result
