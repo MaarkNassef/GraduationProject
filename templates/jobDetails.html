@@ -21,7 +21,7 @@
     <div class="col-10 mx-5  text-white">
         <h5 class=" mt-3"> Form URL:</h5>
         <p>
-            <a href="{{url_for('applyForJob',job_id=details[2])}}">https://127.0.0.1:5000/apply/{{details[2]}}</a>
+            <a href="{{url_for('applyForJob',job_id=details[2])}}">http://127.0.0.1:5000/apply/{{details[2]}}</a>
         </p>
     </div>
     <div class="col-10 mx-5  text-white">
@@ -54,7 +54,7 @@
       <div class="form-floating mb-3 col-8 mx-auto text-center">
         <input type="number" class="form-control bg-transparent text-white" id="experience" name="experience" placeholder="experience"
           style="border-color: #6354FB; border-width: 3px;" min="0">
-        <label for="experience" class="text-white">Experience</label>
+        <label for="experience" class="text-white">Experience based on specific opportunity</label>
         <button type="submit" class="btn btn-primary my-3">Submit</button>
       </div>
     </form>
