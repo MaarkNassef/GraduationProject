@@ -220,7 +220,7 @@ def upload_resume(job_id : int ):
     experience = get_years_of_exp(resume_txt)
     add_new_application(filename, file, ', '.join(skills), ', '.join(designation), experience, job_id)
     flash("Resume uploaded successfully.")
-    return redirect('dispalyAlljobs')
+    return redirect(url_for('dispalyAlljobs'))
 
 @app.route('/apply/<int:job_id>')
 def applyForJob(job_id: int):
