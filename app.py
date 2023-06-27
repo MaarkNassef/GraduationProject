@@ -188,6 +188,11 @@ def process(jobid):
         return redirect(url_for('showJobDetails',ID=jobid))
     return redirect(url_for('showJobDetails',ID=jobid))
 
+@app.route('/displayAllJobs')
+def dispalyAlljobs():
+   result=getAllJobs()
+   return render_template("allJobs.html", Data=result)
+
 @app.route('/file/<int:file_id>')
 def get_file(file_id: int):
     return send_file(

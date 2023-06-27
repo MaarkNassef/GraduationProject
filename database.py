@@ -87,6 +87,12 @@ def save_similarity(applicants_id: list[int], similarities:list[float]):
         cursor.execute('UPDATE application SET similarity=%s WHERE id=%s' , (float(similarities[i]), applicants_id[i]))
         conn.commit()
 
+def getAllJobs():
+    cursor = conn.cursor()
+    cursor.execute('SELECT jobname,id,img_url FROM job')
+    result = cursor.fetchall()
+    return result
+
 def get_file_by_id(aid):
     cursor = conn.cursor()
     cursor.execute('SELECT file FROM application WHERE id = %s' , (aid,))
