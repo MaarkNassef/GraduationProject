@@ -42,7 +42,9 @@ def signin():
         email = request.form['email']
         password = request.form['password']
         password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-        id=authenticate(email=email,password=password)
+        id, role=authenticate(email=email,password=password)
+        if role == 'admin':
+            session['Admin']=1
         if id ==-1 :
             pass
         else:  
@@ -117,7 +119,7 @@ def logout():
 
 @app.route('/contactus')
 def contactus():
-    return render_template('contactus.html')
+    return render_template('contactus.html', questions=getAllFAQs())
 
 @app.route('/Getstarted')
 def Getstarted():
@@ -220,3 +222,54 @@ def upload_resume(job_id : int ):
 def applyForJob(job_id: int):
     Details=getJobDetails(job_id)
     return render_template('BrowseJob.html', details=Details)
+
+@app.route('/admin')
+def adminPage():
+    if 'Admin' not in session:
+        return redirect('/')
+    return render_template('Admin.html')
+
+@app.route('/admin-users')
+def adminUsers():
+    if 'Admin' not in session:
+        return redirect('/')
+    return render_template('adminUsers.html', users=getAllUsers())
+
+@app.route('/admin-promote-users/<int:uid>')
+
+def adminPromoteUsers(uid: int):
+    if 'Admin' not in session:
+        return redirect('/')
+    promoteUser(uid)
+    return redirect('/admin-users')
+
+@app.route('/admin-demote-users/<int:uid>')
+def adminDemoteUsers(uid: int):
+    if 'Admin' not in session:
+        return redirect('/')
+    demoteUser(uid)
+    return redirect('/admin-users')
+
+@app.route('/admin-remove-users/<int:uid>')
+def adminRemoveUsers(uid: int):
+    if 'Admin' not in session:
+        return redirect('/')
+    removeUser(uid)
+    return redirect('/admin-users')
+
+@app.route('/admin-faqs', methods=['GET', 'POST'])
+def adminfaqs():
+    if 'Admin' not in session:
+        return redirect('/')
+    if request.method == 'GET':
+        print(getAllFAQs())
+        return render_template('adminFAQs.html', questions=getAllFAQs())
+    addfaq(request.form['question'], request.form['answer'])
+    return redirect('/admin-faqs')
+
+@app.route('/admin-remove-faqs/<int:uid>')
+def adminRemovefaqs(uid: int):
+    if 'Admin' not in session:
+        return redirect('/')
+    removefaq(uid)
+    return redirect('/admin-faqs')

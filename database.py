@@ -7,14 +7,14 @@ conn = mysql.connector.connect(
     database = 'hrassistant'
 )
 
-def authenticate(email: str, password: str) -> int:
+def authenticate(email: str, password: str):
     cursor = conn.cursor()
-    cursor.execute('SELECT id FROM users WHERE email = %s AND hashed_password = %s', (email, password))
+    cursor.execute('SELECT id, role FROM users WHERE email = %s AND hashed_password = %s', (email, password))
     try:
-        id = cursor.fetchone()[0]
-        return id
+        id, role = cursor.fetchone()
+        return id, role
     except:
-        return -1
+        return -1, None
         
 def signUpRegistration(name,email,password,companyName):
     cursor = conn.cursor()
@@ -111,3 +111,40 @@ def getApplicantsByExp(id, exp):
 
     result = cursor.fetchall()
     return result
+
+def getAllUsers():
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, username, role FROM users')
+    result = cursor.fetchall()
+    return result
+
+def promoteUser(uid):
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET role='admin' WHERE id = %s", (uid,))
+    conn.commit()
+
+def demoteUser(uid):
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET role='normal' WHERE id = %s", (uid,))
+    conn.commit()
+
+def removeUser(uid):
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM users WHERE id = %s", (uid,))
+    conn.commit()
+
+def getAllFAQs():
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, question, answer FROM faqs')
+    result = cursor.fetchall()
+    return result
+
+def removefaq(fid):
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM faqs WHERE id = %s", (fid,))
+    conn.commit()
+
+def addfaq(question, answer):
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO faqs(question, answer) VALUES (%s, %s)", (question, answer))
+    conn.commit()
