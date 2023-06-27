@@ -110,10 +110,6 @@ def FillForm(ID):
         # fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
         return redirect(url_for('home'))
 
-@app.route('/BrowseJob')
-def BrowseJob():
-    return render_template('BrowseJob.html')
-
 @app.route('/logout')
 def logout():
     session.clear()
@@ -131,12 +127,14 @@ def Getstarted():
 def Uploadtype(ID):
     return render_template('Uploadtype.html',id = ID)
 
-@app.route('/NotFound')
-def NotFound():
-    return render_template('Notfound.html')
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('Notfound.html'), 404
 
 @app.route('/addOpportunity',methods=['GET','POST'])
 def addJob():
+    if 'ID' not in session:
+        return redirect('/') # To be changed
     if (request.method=='GET'):
        return render_template('AddJobForm.html')
     else:   
@@ -149,6 +147,8 @@ def addJob():
 
 @app.route('/jobDetails/<int:ID>', methods=['GET', 'POST'])
 def showJobDetails(ID):
+    if ('ID' not in session) or (ID not in [i[2] for i in getHrJobOpportunity(session['ID'])]):
+        return redirect(url_for('applyForJob', job_id=ID))
     if request.method == 'GET':
         Details=getJobDetails(ID)
         Applicants=getApplicants(ID)
@@ -174,12 +174,14 @@ def showJobDetails(ID):
 
 @app.route('/deleteOppurtunity/<int:ID>')
 def removeOppurtunity(ID):
+    if ('ID' not in session) or (ID not in [i[2] for i in getHrJobOpportunity(session['ID'])]):
+        return redirect('/') # To be changed
     deleteJobOpportunity(ID)
     return redirect(url_for('home'))
     
 @app.route('/get-best-applicants/<int:jobid>')
 def process(jobid):
-    if jobid in [i[2] for i in getHrJobOpportunity(session['ID'])] and get_active(jobid)==1:
+    if 'ID' in session and jobid in [i[2] for i in getHrJobOpportunity(session['ID'])] and get_active(jobid)==1:
         deactivate_job(jobid)
         data = getApplicants(jobid)
         applicants_id = [i[4] for i in data]
@@ -213,3 +215,8 @@ def upload_resume(job_id : int ):
     experience = get_years_of_exp(resume_txt)
     add_new_application(filename, file, ', '.join(skills), ', '.join(designation), experience, job_id)
     return redirect('/')
+
+@app.route('/apply/<int:job_id>')
+def applyForJob(job_id: int):
+    Details=getJobDetails(job_id)
+    return render_template('BrowseJob.html', details=Details)
