@@ -40,6 +40,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('contactus')}}">Contact</a>
                         </li>
+                        {% if 'Admin' in session: %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('adminPage')}}">Admin</a>
+                        </li>
+                        {% endif %}
                         {% if 'ID' in session: %} <!--Signed In-->
                         <div class="search ps-3 pe-3 d-none d-lg-block">
                         </div>
@@ -109,7 +114,6 @@
                         <ul class="list-unstyled lh-lg">
                             <li><a class="navbar-brand" href="{{url_for('signin')}}">Sign In</a></li>
                             <li><a class="navbar-brand" href="{{url_for('signUp')}}">Register</a></li>
-                            <li><a class="navbar-brand" href="#">Forget Password</a></li>
                         </ul>
                     </div>
                 </div>

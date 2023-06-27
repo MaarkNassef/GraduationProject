@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Admin|FAQs{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
+<table class="container mx-auto col-lg-8 col-md-6 col-sm-6 content-table table-striped">
+    <thead>
+        <tr>
+            <th scope="col" class="table-active">
+                <h6 class="display-6 fs-4">#</h6>
+            </th>
+            <th scope="col">Question</th>
+            <th scope="col">Answer</th>
+            <th scope="col">Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for question in questions: %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{question[1]}}</td>
+            <td>{{question[2]}}</td>
+            <td>
+                <a href="/admin-remove-faqs/{{question[0]}}" class="mx-3 btn btn-primary">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <form method="post">
+                <td>*</td>
+                <td>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="question" name="question"
+                        style="border-color: #6354FB; border-width: 3px;" placeholder="question">
+                    <label for="question">Question</label>
+                </div></td>
+                <td><div class="form-floating">
+                    <input type="text" class="form-control" id="answer" name="answer"
+                        style="border-color: #6354FB; border-width: 3px;" placeholder="answer">
+                    <label for="answer">Answer</label>
+                </div></td>
+                <td>
+                    <button type="submit" class="mx-3 btn btn-primary">Add</button>
+                </td>
+            </form>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
