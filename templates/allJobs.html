@@ -25,7 +25,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-lg-7 col-md-6 col-sm-6 ">
+    <div class="col-lg-8 col-md-6 col-sm-6 ">
       <p style="color: white; padding-top: 3%;">
         HR Assistant is an innovative project designed to streamline the recruitment process for companies. With this
         tool, recruiters can quickly and efficiently identify potential candidates who possess the skills and experience
@@ -35,9 +35,11 @@
         then matches these requirements with the skills and experience of potential candidates, providing a
         comprehensive overview of each candidate's qualifications.
     </div>
-    <div class="col-lg-5 col-md-6 col-sm-6  align-items-center ">
+    <div class="col-lg-4 col-md-6 col-sm-6  align-items-center ">
       <img src="static/Photo/Labtop With old phone@2x.png" class="img-fluid" style=" padding-top: 5%;">
-      <div class="d-grid  gap-2 col-5 mx-auto"><button style="background-color: #7620FF;" class="btn btn-primary" type="button">Contact US</button></div>
+      <a href="{{url_for('contactus')}}">
+      <div class="d-grid mt-4 gap-2 col-5 mx-auto"><button style="background-color: #7620FF;" class="btn btn-primary" href="{{url_for('contactus')}} type="button">Contact US</button> </div>
+      </a>
     </div>
   </div>
 </div>
@@ -59,11 +61,15 @@
         our website and we will get back to you as soon as possible. We appreciate your feedback and look forward to
         hearing from you!
     </div>
-    <div class="col-sm-6 row-cols-1 ">
+   
+      <div class="col-sm-6 row-cols-1 ">
       <div style="width: 50; padding-left: 42%; padding-top: 20%;">
-        <a href="#" class="btn btn-primary rounded-pill main-btn text-white w-75 h-auto">Read more</a>
+        <a href="{{url_for('aboutus')}}">
+        <div  class="d-grid  gap-2 col-7 mx-5 fs-1"><button style="background-color: #7620FF;" class="btn btn-primary" type="button">Read More</button></div>
+      </a>
       </div>
     </div>
+ 
   </div>
 </div>
 {% endblock %}

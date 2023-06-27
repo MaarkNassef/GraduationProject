@@ -35,11 +35,15 @@
                             <a class="nav-link " aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('dispalyAlljobs')}}">Browse Job</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{url_for('aboutus')}}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('contactus')}}">Contact</a>
                         </li>
+                       
                         {% if 'Admin' in session: %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('adminPage')}}">Admin</a>
@@ -123,7 +127,7 @@
                         <p class="lh-lg mt-3 mb-5">Get in touch with us via mail phone.We are waiting for your call or
                             message</p>
                         <a class="btn btn-primary rounded-pill main-btn text-white w-75 h-auto"
-                            href="#">HrAssistant@gmail.com</a>
+                            href="mailto:hrassistant97@gmail.com">HrAssistant@gmail.com</a>
                         </ul>
                     </div>
                 </div>
