@@ -48,7 +48,7 @@ def signin():
         if role == 'admin':
             session['Admin']=1
         if id ==-1 :
-            flash("User already exists or wrong password.")
+            flash("User doesn't exist or wrong password.")
             return redirect('/signIn')
         else:  
             session['Email']=email
