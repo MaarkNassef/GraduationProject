@@ -2,7 +2,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
+{% for message in get_flashed_messages() %}
+        <div class="alert alert-success" role="alert">
+          {{message}}
+        </div>
+        {% endfor %}
 <div class="row row-cols-1 row-cols-md-3 g-4" style="width: 90%; padding-left: 12%;padding-top: 3%;">
   <div class="col-sm-6 " width="26" height="238">
     <a href="{{url_for('addJob')}}" class="text-decoration-none">
@@ -50,7 +54,9 @@
     </div>
     <div class="col-lg-5 col-md-6 col-sm-6  align-items-center ">
       <img src="static/Photo/Labtop With old phone@2x.png" class="img-fluid" style=" padding-top: 5%;">
-      <div class="d-grid  gap-2 col-5 mx-auto"><button style="background-color: #7620FF;" class="btn btn-primary" type="button">Contact US</button></div>
+      <a href="{{url_for('contactus')}}">
+        <div class="d-grid mt-4 gap-2 col-5 mx-auto"><button style="background-color: #7620FF;" class="btn btn-primary" type="button">Contact Us</button> </div>
+        </a>
     </div>
   </div>
 </div>
