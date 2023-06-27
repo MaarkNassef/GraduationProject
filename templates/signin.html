@@ -12,6 +12,11 @@
                     <h2 class="display-3 fs-1 text-white ">Welcome</h2>
                     <h2 class="display-4 fs-4 text-white">Login</h2>
                 </div>
+                {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger" role="alert">
+          {{message}}
+        </div>
+        {% endfor %}
                 <form method="post">
                         <div>
                             <style>

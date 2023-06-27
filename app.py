@@ -9,6 +9,7 @@ import pyotp
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Amir Secret key'
+
 @app.route('/signup',methods=['GET','POST'])
 def signUp():
     if request.method=='GET':
@@ -20,7 +21,8 @@ def signUp():
         confirmationPassword=request.form['confirmPassword']
         company_name=request.form['companyName']
         if(password!=confirmationPassword):
-             flash("Password doesn't match!!! ")
+             flash("Password doesn't match.")
+             return redirect(url_for('signUp'))
         else:
             password = hashlib.sha256(password.encode('utf-8')).hexdigest()
             signUpRegistration(name,email,password,company_name)
@@ -46,7 +48,8 @@ def signin():
         if role == 'admin':
             session['Admin']=1
         if id ==-1 :
-            pass
+            flash("User already exists or wrong password.")
+            return redirect('/signIn')
         else:  
             session['Email']=email
             session['tid'] =id
@@ -110,7 +113,8 @@ def FillForm(ID):
         experience = get_years_of_exp(r_txt)
         add_new_application(filename, pdf_file, ', '.join(skills), ', '.join(designation), experience, ID)
         # fillForm(userName,userEmail,userEducation,userSkills,userAddress,userPhoneNumber,userProjects,userExperience,ID,userObjective)
-        return redirect(url_for('home'))
+        flash("Application sent successfully.")
+        return redirect(url_for('dispalyAlljobs'))
 
 @app.route('/logout')
 def logout():
@@ -121,9 +125,6 @@ def logout():
 def contactus():
     return render_template('contactus.html', questions=getAllFAQs())
 
-@app.route('/Getstarted')
-def Getstarted():
-    return render_template('Getstarted.html')
 
 @app.route('/Uploadtype/<int:ID>')
 def Uploadtype(ID):
@@ -145,6 +146,7 @@ def addJob():
         imageSource=request.form['imageSource']
         if(jobName!="" and jobDescription!="" and imageSource!=""):
             addJobOpportunity(session['ID'],jobName,jobDescription,imageSource)
+            flash("Job opportunity added successfully.")
             return redirect(url_for('home'))
 
 @app.route('/jobDetails/<int:ID>', methods=['GET', 'POST'])
@@ -179,6 +181,7 @@ def removeOppurtunity(ID):
     if ('ID' not in session) or (ID not in [i[2] for i in getHrJobOpportunity(session['ID'])]):
         return redirect('/') # To be changed
     deleteJobOpportunity(ID)
+    flash("Job opportunity removed successfully.")
     return redirect(url_for('home'))
     
 @app.route('/get-best-applicants/<int:jobid>')
@@ -216,7 +219,8 @@ def upload_resume(job_id : int ):
     designation = get_designition(resume_txt)
     experience = get_years_of_exp(resume_txt)
     add_new_application(filename, file, ', '.join(skills), ', '.join(designation), experience, job_id)
-    return redirect('/')
+    flash("Resume uploaded successfully.")
+    return redirect('dispalyAlljobs')
 
 @app.route('/apply/<int:job_id>')
 def applyForJob(job_id: int):
