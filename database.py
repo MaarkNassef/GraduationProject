@@ -18,9 +18,12 @@ def authenticate(email: str, password: str):
         
 def signUpRegistration(name,email,password,companyName):
     cursor = conn.cursor()
-    cursor.execute('insert into users(username,email,hashed_password,company_name, role) values(%s, %s, %s, %s, %s)',(name,email,password,companyName, 'normal'))
-
-    conn.commit()
+    try:
+        cursor.execute('insert into users(username,email,hashed_password,company_name, role) values(%s, %s, %s, %s, %s)',(name,email,password,companyName, 'normal'))
+        conn.commit()
+        return 1
+    except:
+        return -1
 
 def getHrJobOpportunity(id):
     cursor = conn.cursor()

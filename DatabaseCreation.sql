@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id INT AUTO_INCREMENT,
   username VARCHAR(255),
-  email VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
   hashed_password VARCHAR(255),
   company_name VARCHAR(255),
   otp TEXT,

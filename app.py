@@ -25,7 +25,10 @@ def signUp():
              return redirect(url_for('signUp'))
         else:
             password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-            signUpRegistration(name,email,password,company_name)
+            r = signUpRegistration(name,email,password,company_name)
+            if r == -1:
+                flash("Email already exists")
+                return redirect("/signup")
        
         return redirect(url_for('signin'))
        
