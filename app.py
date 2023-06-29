@@ -127,9 +127,6 @@ def logout():
 @app.route('/contactus')
 def contactus():
     return render_template('contactus.html', questions=getAllFAQs())
-@app.route('/termsAndCondition')
-def termsAndCondition():
-    return render_template('termsAndCondition.html')
 
 @app.route('/termsAndCondition')
 def termsAndCondition():
