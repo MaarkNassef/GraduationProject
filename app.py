@@ -128,6 +128,9 @@ def logout():
 def contactus():
     return render_template('contactus.html', questions=getAllFAQs())
 
+@app.route('/termsAndCondition')
+def termsAndCondition():
+    return render_template('termsAndCondition.html')
 
 @app.route('/Uploadtype/<int:ID>')
 def Uploadtype(ID):
