@@ -73,7 +73,8 @@ def totp():
     otp = int(request.form.get('otp'))
     if pyotp.TOTP(token).verify(otp):
         session['ID'] = session['tid']
-        session['Admin'] = 2
+        if 'Admin'in session:
+            session['Admin'] = 2
         session.pop('tid')
         return redirect(url_for("home"))
     else:
