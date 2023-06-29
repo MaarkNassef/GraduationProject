@@ -24,10 +24,7 @@ Skills:
 """
 
 def GeneratePDF(Text: str) -> bytes:
-    print(Text)
-    print('='*60)
     Text = textwrap.fill(Text, width=105, replace_whitespace=False)
-    print(Text)
     text = Text.split('\n')
     pdf_file = fitz.open()
     for i, line in enumerate(text):

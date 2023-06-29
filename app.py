@@ -181,6 +181,8 @@ def showJobDetails(ID):
         if isApplicable(app_designation, valid_designations):
             apps.append(i)
     active = get_active(ID)
+    if len(apps) == 0:
+        apps = Applicants
     return render_template('jobDetails.html',details = Details,applicants=apps, active=active)
 
 @app.route('/deleteOppurtunity/<int:ID>')

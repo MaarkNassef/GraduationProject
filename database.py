@@ -46,7 +46,7 @@ def getJobDetails(id):
 
 def getApplicants(id):
     cursor = conn.cursor()
-    cursor.execute('SELECT application.filename,application.similarity,application.experience, application.skills, application.id FROM job,application WHERE application.jobid= %s ORDER BY similarity DESC'  , (id,))
+    cursor.execute('SELECT application.filename,application.similarity,application.experience, application.skills, application.id FROM application WHERE application.jobid= %s ORDER BY similarity DESC'  , (id,))
 
     result = cursor.fetchall()
     return result
@@ -110,7 +110,7 @@ def add_new_application(filename: str, file: bytes, skills: str, designation: st
 
 def getApplicantsByExp(id, exp):
     cursor = conn.cursor()
-    cursor.execute('SELECT application.filename,application.similarity,application.experience, application.skills, application.id, application.designation FROM job,application WHERE application.jobid= %s AND experience >= %s ORDER BY similarity DESC'  , (id,exp))
+    cursor.execute('SELECT application.filename,application.similarity,application.experience, application.skills, application.id, application.designation FROM application WHERE application.jobid= %s AND experience >= %s ORDER BY similarity DESC'  , (id,exp))
 
     result = cursor.fetchall()
     return result
