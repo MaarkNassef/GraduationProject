@@ -45,7 +45,7 @@
                             <a class="nav-link" href="{{url_for('contactus')}}">Contact Us</a>
                         </li>
                        
-                        {% if 'Admin' in session: %}
+                        {% if session['Admin'] == 2 %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('adminPage')}}">Admin</a>
                         </li>
@@ -68,7 +68,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-button2 btn btn-outline-primary rounded-pill text-decoration-none" 
-                                href="{{url_for('signUp')}}">Get Started</a>
+                                href="{{url_for('signUp')}}">Sign Up</a>
                         </li>
                     </ul>
                 </div>
@@ -112,6 +112,7 @@
                         </ul>
                     </div>
                 </div>
+                {% if 'ID' not in session %}
                 <div class="col-md-6 col-lg-2">
                     <div class="links">
                         <h5 class="text-light">Authentication</h5>
@@ -121,6 +122,7 @@
                         </ul>
                     </div>
                 </div>
+                {% endif %}
                 <div class="col-md-6 col-lg-4">
                     <div class="contact">
                         <h5 class="text-light">Contact Us</h5>
