@@ -52,13 +52,13 @@
       <h2 class="accordion-header">
         
     <a class="btn btn-primary rounded-pill main-btn text-white col-12 "> 
-        <button class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <button class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{question[0]}}" aria-expanded="false" aria-controls="flush-collapseOne">
           {{question[1]}}
         </button>
         </a>
         
       </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div id="flush-collapseOne{{question[0]}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body text-white">{{question[2]}}</div>
       </div>
     </div>
