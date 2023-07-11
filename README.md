@@ -8,7 +8,7 @@ The HR Assistant application is a web-based tool designed to streamline the recr
 2. [HR Recruiter's Workflow](#hr-recruiters-workflow)
 3. [Applicant's Workflow](#applicants-workflow)
 
-## 1. Application Deployment
+## 1. Application Deployment <a name="application-deployment"></a>
 
 To deploy the HR Assistant application, please follow the steps outlined below:
 
@@ -44,7 +44,7 @@ To deploy the HR Assistant application, please follow the steps outlined below:
    flask --app app --debug run
    ```
 
-## 2. HR Recruiter's Workflow
+## 2. HR Recruiter's Workflow <a name="hr-recruiters-workflow"></a>
 
 HR recruiters can follow these steps to effectively use the HR Assistant application:
 
@@ -88,7 +88,7 @@ HR recruiters can follow these steps to effectively use the HR Assistant applica
 
    ![HR Recruiter Applies Filtration Based on Experience](images/filter_based_on_exp.jpg)
 
-## 3. Applicant's Workflow
+## 3. Applicant's Workflow <a name="applicants-workflow"></a>
 
 Applicants can follow these steps to utilize the HR Assistant application effectively:
 
