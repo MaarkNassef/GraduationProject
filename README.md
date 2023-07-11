@@ -1,4 +1,4 @@
-# HR Assistant Application Readme
+# HR Assistant
 
 The HR Assistant application is a web-based tool designed to streamline the recruitment process for HR recruiters and applicants. This readme file provides instructions on how to deploy and utilize the HR Assistant application effectively.
 
