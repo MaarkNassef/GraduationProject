@@ -107,7 +107,8 @@ Applicants can follow these steps to utilize the HR Assistant application effect
 
 2. Ensure that the resume is in an acceptable format, such as PDF, for accurate processing.
 
-   ![Upload Resume](images/upload_resume.jpg)
+   ![Upload Resume](images/upload_resume.png)
 
+3. The HR Assistant system will automatically analyze your resume and compare it with the job description to determine its suitability.
 
 Thank you for using the HR Assistant application. If you have any questions or encounter any issues, please refer to the documentation or contact the support team for assistance.
